@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { useFavorites } from "@/context/FavoritesContext";
 
 const navLinks = [
   { href: "/", label: "Home" },
@@ -20,6 +21,7 @@ function isActive(pathname: string, href: string): boolean {
 
 export default function Navbar() {
   const pathname = usePathname();
+  const { favoriteCount } = useFavorites();
 
   return (
     <header className="sticky top-0 z-50 border-b border-stone-200 bg-white/95 backdrop-blur-sm">
@@ -34,6 +36,10 @@ export default function Navbar() {
         <ul className="flex items-center gap-1 sm:gap-2">
           {navLinks.map(({ href, label }) => {
             const active = isActive(pathname, href);
+            const displayLabel =
+              href === "/favorites" && favoriteCount > 0
+                ? `${label} (${favoriteCount})`
+                : label;
 
             return (
               <li key={href}>
@@ -45,7 +51,7 @@ export default function Navbar() {
                       : "text-stone-600 hover:bg-stone-100 hover:text-stone-900"
                   }`}
                 >
-                  {label}
+                  {displayLabel}
                 </Link>
               </li>
             );

@@ -1,11 +1,23 @@
+"use client";
+
 import Link from "next/link";
 import type { Experience } from "@/types/experience";
 
 interface ExperienceCardProps {
   experience: Experience;
+  isFavorite?: boolean;
+  onToggleFavorite?: (id: string) => void;
 }
 
-export default function ExperienceCard({ experience }: ExperienceCardProps) {
+export default function ExperienceCard({
+  experience,
+  isFavorite = false,
+  onToggleFavorite,
+}: ExperienceCardProps) {
+  const favoriteLabel = isFavorite
+    ? `Remove ${experience.title} from favorites`
+    : `Add ${experience.title} to favorites`;
+
   return (
     <article className="group flex flex-col overflow-hidden rounded-xl border border-stone-200 bg-white shadow-sm transition-shadow hover:shadow-md">
       <div className="relative aspect-[4/3] overflow-hidden bg-stone-100">
@@ -18,6 +30,23 @@ export default function ExperienceCard({ experience }: ExperienceCardProps) {
         <span className="absolute left-3 top-3 rounded-full bg-white/95 px-3 py-1 text-xs font-medium text-stone-700 shadow-sm">
           {experience.category}
         </span>
+        {onToggleFavorite ? (
+          <button
+            type="button"
+            aria-label={favoriteLabel}
+            aria-pressed={isFavorite}
+            onClick={(event) => {
+              event.preventDefault();
+              event.stopPropagation();
+              onToggleFavorite(experience.id);
+            }}
+            className={`absolute right-3 top-3 flex h-9 w-9 items-center justify-center rounded-full bg-white/95 text-lg shadow-sm transition-colors hover:bg-white ${
+              isFavorite ? "text-rose-600" : "text-stone-500 hover:text-rose-500"
+            }`}
+          >
+            {isFavorite ? "♥" : "♡"}
+          </button>
+        ) : null}
       </div>
 
       <div className="flex flex-1 flex-col p-4">

@@ -7,12 +7,14 @@ import FilterBar from "@/components/FilterBar";
 import SearchBar from "@/components/SearchBar";
 import { experiences } from "@/data/experiences";
 import { useExperienceFilters } from "@/hooks/useExperienceFilters";
+import { useFavorites } from "@/context/FavoritesContext";
 import type { ExperienceCategory } from "@/types/experience";
 
 export default function ExperiencesPageContent() {
   const router = useRouter();
   const pathname = usePathname();
   const searchParams = useSearchParams();
+  const { favoriteIds, toggleFavorite } = useFavorites();
 
   const search = searchParams.get("search") ?? "";
   const category = searchParams.get("category") ?? "";
@@ -109,7 +111,11 @@ export default function ExperiencesPageContent() {
         ) : null}
       </div>
 
-      <ExperienceGrid experiences={filteredExperiences} />
+      <ExperienceGrid
+        experiences={filteredExperiences}
+        favoriteIds={favoriteIds}
+        onToggleFavorite={toggleFavorite}
+      />
     </div>
   );
 }

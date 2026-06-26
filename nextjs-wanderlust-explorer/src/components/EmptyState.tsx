@@ -1,11 +1,13 @@
 interface EmptyStateProps {
   title?: string;
   description?: string;
+  children?: React.ReactNode;
 }
 
 export default function EmptyState({
   title = "No results found",
   description = "Try adjusting your search or filters to find more experiences.",
+  children,
 }: EmptyStateProps) {
   return (
     <div className="flex flex-col items-center justify-center rounded-2xl border border-dashed border-stone-300 bg-white px-6 py-16 text-center">
@@ -16,6 +18,7 @@ export default function EmptyState({
       <p className="mt-2 max-w-md text-sm leading-relaxed text-stone-500">
         {description}
       </p>
+      {children}
     </div>
   );
 }
