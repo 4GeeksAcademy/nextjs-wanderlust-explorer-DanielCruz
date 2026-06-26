@@ -24,11 +24,11 @@ export default function FilterBar({
   );
 
   return (
-    <div className="flex flex-col gap-4 sm:flex-row sm:items-end">
-      <div className="w-full sm:max-w-xs">
+    <div className="grid gap-4 sm:grid-cols-2">
+      <div className="w-full">
         <label
           htmlFor="category-filter"
-          className="mb-1 block text-sm font-medium text-stone-700"
+          className="mb-2 block text-sm font-semibold text-stone-800"
         >
           Category
         </label>
@@ -38,7 +38,7 @@ export default function FilterBar({
           onChange={(event) =>
             onCategoryChange?.(event.target.value as ExperienceCategory | "")
           }
-          className="w-full rounded-xl border border-stone-200 bg-white px-4 py-3 text-sm text-stone-900 shadow-sm outline-none focus:border-teal-500 focus:ring-2 focus:ring-teal-500/20 focus-visible:outline-none"
+          className="w-full rounded-2xl border border-stone-200 bg-stone-50 px-4 py-3.5 text-sm text-stone-950 shadow-sm outline-none transition-colors focus:border-teal-500 focus:bg-white focus:ring-4 focus:ring-teal-500/10 focus-visible:outline-none"
         >
           <option value="">All categories</option>
           {categoryOptions.map((category) => (
@@ -49,10 +49,10 @@ export default function FilterBar({
         </select>
       </div>
 
-      <div className="w-full sm:max-w-xs">
+      <div className="w-full">
         <label
           htmlFor="destination-filter"
-          className="mb-1 block text-sm font-medium text-stone-700"
+          className="mb-2 block text-sm font-semibold text-stone-800"
         >
           Destination
         </label>
@@ -60,7 +60,7 @@ export default function FilterBar({
           id="destination-filter"
           value={selectedDestination}
           onChange={(event) => onDestinationChange?.(event.target.value)}
-          className="w-full rounded-xl border border-stone-200 bg-white px-4 py-3 text-sm text-stone-900 shadow-sm outline-none focus:border-teal-500 focus:ring-2 focus:ring-teal-500/20 focus-visible:outline-none"
+          className="w-full rounded-2xl border border-stone-200 bg-stone-50 px-4 py-3.5 text-sm text-stone-950 shadow-sm outline-none transition-colors focus:border-teal-500 focus:bg-white focus:ring-4 focus:ring-teal-500/10 focus-visible:outline-none"
         >
           <option value="">All destinations</option>
           {!destinationValueInOptions && selectedDestination ? (

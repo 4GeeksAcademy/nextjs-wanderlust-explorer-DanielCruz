@@ -13,7 +13,10 @@ export default function SearchBar({
 }: SearchBarProps) {
   return (
     <div className="w-full">
-      <label htmlFor="experience-search" className="sr-only">
+      <label
+        htmlFor="experience-search"
+        className="mb-2 block text-sm font-semibold text-stone-800"
+      >
         Search experiences
       </label>
       <input
@@ -23,7 +26,7 @@ export default function SearchBar({
         onChange={(event) => onSearchChange?.(event.target.value)}
         placeholder={placeholder}
         aria-label="Search experiences"
-        className="w-full rounded-xl border border-stone-200 bg-white px-4 py-3 text-sm text-stone-900 shadow-sm outline-none transition-colors placeholder:text-stone-400 focus:border-teal-500 focus:ring-2 focus:ring-teal-500/20 focus-visible:outline-none"
+        className="w-full rounded-2xl border border-stone-200 bg-stone-50 px-4 py-3.5 text-base text-stone-950 shadow-sm outline-none transition-colors placeholder:text-stone-400 focus:border-teal-500 focus:bg-white focus:ring-4 focus:ring-teal-500/10 focus-visible:outline-none"
       />
     </div>
   );
