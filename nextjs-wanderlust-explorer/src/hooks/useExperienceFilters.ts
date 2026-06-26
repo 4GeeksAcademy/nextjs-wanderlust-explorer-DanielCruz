@@ -28,14 +28,18 @@ function escapeRegExp(value: string): string {
   return value.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
 }
 
-function matchesSearch(title: string, search: string): boolean {
+function matchesSearch(
+  title: string,
+  destination: string,
+  search: string,
+): boolean {
   const term = search.trim();
   if (!term) {
     return true;
   }
 
   const regex = new RegExp(escapeRegExp(term), "i");
-  return regex.test(title);
+  return regex.test(title) || regex.test(destination);
 }
 
 function matchesCategory(
@@ -79,7 +83,7 @@ export function useExperienceFilters({
   const filteredExperiences = useMemo(() => {
     return experiences.filter(
       (experience) =>
-        matchesSearch(experience.title, search) &&
+        matchesSearch(experience.title, experience.destination, search) &&
         matchesCategory(experience.category, category) &&
         matchesDestination(experience.destination, destination),
     );

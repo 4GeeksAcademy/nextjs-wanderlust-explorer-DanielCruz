@@ -9,7 +9,7 @@ interface SearchBarProps {
 export default function SearchBar({
   value = "",
   onSearchChange,
-  placeholder = "Search sailing, food tours, wellness...",
+  placeholder = "Search by title, city, or country...",
 }: SearchBarProps) {
   return (
     <div className="w-full">
