@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
-import Navbar from "@/components/Navbar";
 import { FavoritesProvider } from "@/context/FavoritesContext";
+import FavoritesLayoutInner from "@/components/FavoritesLayoutInner";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -32,8 +32,7 @@ export default function RootLayout({
     >
       <body className="flex min-h-full flex-col bg-stone-50 text-stone-950">
         <FavoritesProvider>
-          <Navbar />
-          <main className="flex-1">{children}</main>
+          <FavoritesLayoutInner>{children}</FavoritesLayoutInner>
         </FavoritesProvider>
       </body>
     </html>

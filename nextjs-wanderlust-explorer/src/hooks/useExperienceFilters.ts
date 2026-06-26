@@ -28,6 +28,19 @@ function escapeRegExp(value: string): string {
   return value.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
 }
 
+export function normalizeCategoryFilter(category: string): string {
+  const value = category.trim();
+  if (!value) {
+    return "";
+  }
+
+  const match = VALID_CATEGORIES.find(
+    (item) => item.toLowerCase() === value.toLowerCase(),
+  );
+
+  return match ?? value;
+}
+
 function matchesSearch(
   title: string,
   destination: string,
@@ -52,7 +65,12 @@ function matchesCategory(
   }
 
   if (!VALID_CATEGORIES.includes(value as ExperienceCategory)) {
-    return false;
+    const normalized = normalizeCategoryFilter(value);
+    if (!VALID_CATEGORIES.includes(normalized as ExperienceCategory)) {
+      return false;
+    }
+
+    return experienceCategory === normalized;
   }
 
   return experienceCategory === value;

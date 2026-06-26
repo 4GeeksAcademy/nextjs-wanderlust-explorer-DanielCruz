@@ -2,7 +2,6 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useFavorites } from "@/context/FavoritesContext";
 
 const navLinks = [
   { href: "/", label: "Home" },
@@ -19,9 +18,8 @@ function isActive(pathname: string, href: string): boolean {
   return pathname.startsWith(href);
 }
 
-export default function Navbar() {
+export default function Navbar({ favoriteCount = 0 }: { favoriteCount?: number }) {
   const pathname = usePathname();
-  const { favoriteCount } = useFavorites();
 
   return (
     <header className="sticky top-0 z-50 border-b border-stone-200/80 bg-white/90 shadow-sm backdrop-blur-md">
