@@ -21,16 +21,22 @@ export default function ExperienceCard({
   return (
     <article className="group flex h-full flex-col overflow-hidden rounded-3xl border border-stone-200 bg-white shadow-sm transition-all duration-300 hover:-translate-y-0.5 hover:border-stone-300 hover:shadow-lg">
       <div className="relative aspect-[5/4] overflow-hidden bg-stone-100">
-        {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img
-          src={experience.imageUrl}
-          alt={experience.title}
-          className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
-        />
-        <div className="absolute inset-0 bg-gradient-to-t from-stone-950/25 via-transparent to-transparent" />
-        <span className="absolute left-4 top-4 rounded-full border border-white/20 bg-white/95 px-3 py-1 text-xs font-semibold text-stone-800 shadow-sm backdrop-blur-sm">
-          {experience.category}
-        </span>
+        <Link
+          href={`/experiences/${experience.id}`}
+          aria-label={`View details for ${experience.title}`}
+          className="block h-full w-full"
+        >
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src={experience.imageUrl}
+            alt={experience.title}
+            className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-stone-950/25 via-transparent to-transparent" />
+          <span className="absolute left-4 top-4 rounded-full border border-white/20 bg-white/95 px-3 py-1 text-xs font-semibold text-stone-800 shadow-sm backdrop-blur-sm">
+            {experience.category}
+          </span>
+        </Link>
         {onToggleFavorite ? (
           <button
             type="button"
@@ -41,7 +47,7 @@ export default function ExperienceCard({
               event.stopPropagation();
               onToggleFavorite(experience.id);
             }}
-            className={`absolute right-4 top-4 flex h-10 w-10 items-center justify-center rounded-full border shadow-sm backdrop-blur-sm transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-500 focus-visible:ring-offset-2 ${
+            className={`absolute right-4 top-4 z-10 flex h-10 w-10 items-center justify-center rounded-full border shadow-sm backdrop-blur-sm transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-500 focus-visible:ring-offset-2 ${
               isFavorite
                 ? "border-rose-200 bg-rose-50 text-lg text-rose-600"
                 : "border-white/30 bg-white/95 text-lg text-stone-500 hover:text-rose-500"
