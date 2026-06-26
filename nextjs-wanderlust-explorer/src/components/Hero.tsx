@@ -58,9 +58,11 @@ export default function Hero() {
           <div className="relative min-h-[320px] bg-stone-100 lg:min-h-full">
             <div className="absolute inset-0 grid grid-cols-2 grid-rows-2 gap-2 p-3 sm:gap-3 sm:p-4">
               {featuredImages.map((experience, index) => (
-                <div
+                <Link
                   key={experience.id}
-                  className={`relative overflow-hidden rounded-2xl ${
+                  href={`/experiences?destination=${encodeURIComponent(experience.destination)}`}
+                  aria-label={`View experiences in ${experience.destination}`}
+                  className={`group relative block overflow-hidden rounded-2xl transition hover:scale-[1.02] hover:shadow-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-500 focus-visible:ring-offset-2 ${
                     index === 0 ? "col-span-2 row-span-1" : ""
                   }`}
                 >
@@ -68,15 +70,13 @@ export default function Hero() {
                   <img
                     src={experience.imageUrl}
                     alt={experience.title}
-                    className="h-full min-h-[140px] w-full object-cover"
+                    className="h-full min-h-[140px] w-full object-cover transition-transform duration-300 group-hover:scale-105"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-stone-950/35 to-transparent" />
-                  {index === 0 ? (
-                    <p className="absolute bottom-3 left-3 right-3 text-sm font-medium text-white">
-                      {experience.destination}
-                    </p>
-                  ) : null}
-                </div>
+                  <div className="absolute inset-0 bg-gradient-to-t from-stone-950/45 via-stone-950/10 to-transparent transition-colors group-hover:from-stone-950/55" />
+                  <p className="absolute bottom-3 left-3 right-3 text-sm font-semibold text-white">
+                    {experience.destination}
+                  </p>
+                </Link>
               ))}
             </div>
           </div>
