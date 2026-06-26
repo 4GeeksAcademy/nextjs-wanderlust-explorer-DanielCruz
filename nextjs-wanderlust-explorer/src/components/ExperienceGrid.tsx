@@ -18,7 +18,7 @@ export default function ExperienceGrid({
   if (experiences.length === 0) {
     return (
       <EmptyState
-        title="No experiences found."
+        title="No results found"
         description="Try adjusting your search or filters."
       />
     );

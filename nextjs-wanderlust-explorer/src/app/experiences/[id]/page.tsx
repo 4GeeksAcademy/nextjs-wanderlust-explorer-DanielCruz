@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import ExperienceDetailEffects from "@/components/ExperienceDetailEffects";
 import FavoriteButton from "@/components/FavoriteButton";
 import { experiences } from "@/data/experiences";
 
@@ -26,7 +27,8 @@ export default async function ExperienceDetailPage({
   }
 
   return (
-    <div className="mx-auto max-w-6xl px-4 py-10 sm:px-6 lg:px-8">
+    <div className="mx-auto max-w-6xl px-4 py-8 sm:px-6 sm:py-10 lg:px-8">
+      <ExperienceDetailEffects title={experience.title} />
       <Link
         href="/experiences"
         className="mb-6 inline-flex text-sm font-medium text-teal-700 hover:text-teal-800"

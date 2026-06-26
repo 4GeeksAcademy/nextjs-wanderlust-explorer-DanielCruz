@@ -38,7 +38,7 @@ export default function FilterBar({
           onChange={(event) =>
             onCategoryChange?.(event.target.value as ExperienceCategory | "")
           }
-          className="w-full rounded-xl border border-stone-200 bg-white px-4 py-3 text-sm text-stone-900 shadow-sm outline-none focus:border-teal-500 focus:ring-2 focus:ring-teal-500/20"
+          className="w-full rounded-xl border border-stone-200 bg-white px-4 py-3 text-sm text-stone-900 shadow-sm outline-none focus:border-teal-500 focus:ring-2 focus:ring-teal-500/20 focus-visible:outline-none"
         >
           <option value="">All categories</option>
           {categoryOptions.map((category) => (
@@ -60,7 +60,7 @@ export default function FilterBar({
           id="destination-filter"
           value={selectedDestination}
           onChange={(event) => onDestinationChange?.(event.target.value)}
-          className="w-full rounded-xl border border-stone-200 bg-white px-4 py-3 text-sm text-stone-900 shadow-sm outline-none focus:border-teal-500 focus:ring-2 focus:ring-teal-500/20"
+          className="w-full rounded-xl border border-stone-200 bg-white px-4 py-3 text-sm text-stone-900 shadow-sm outline-none focus:border-teal-500 focus:ring-2 focus:ring-teal-500/20 focus-visible:outline-none"
         >
           <option value="">All destinations</option>
           {!destinationValueInOptions && selectedDestination ? (

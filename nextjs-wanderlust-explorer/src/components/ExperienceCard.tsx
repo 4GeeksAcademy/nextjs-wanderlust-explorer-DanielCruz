@@ -40,7 +40,7 @@ export default function ExperienceCard({
               event.stopPropagation();
               onToggleFavorite(experience.id);
             }}
-            className={`absolute right-3 top-3 flex h-9 w-9 items-center justify-center rounded-full bg-white/95 text-lg shadow-sm transition-colors hover:bg-white ${
+            className={`absolute right-3 top-3 flex h-9 w-9 items-center justify-center rounded-full bg-white/95 text-lg shadow-sm transition-colors hover:bg-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-500 focus-visible:ring-offset-2 ${
               isFavorite ? "text-rose-600" : "text-stone-500 hover:text-rose-500"
             }`}
           >

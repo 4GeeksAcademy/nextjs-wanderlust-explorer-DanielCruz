@@ -6,7 +6,7 @@ interface EmptyStateProps {
 
 export default function EmptyState({
   title = "No results found",
-  description = "Try adjusting your search or filters to find more experiences.",
+  description = "Try adjusting your search or filters.",
   children,
 }: EmptyStateProps) {
   return (

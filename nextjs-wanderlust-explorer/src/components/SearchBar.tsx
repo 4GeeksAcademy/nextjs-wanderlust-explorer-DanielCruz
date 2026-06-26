@@ -23,7 +23,7 @@ export default function SearchBar({
         onChange={(event) => onSearchChange?.(event.target.value)}
         placeholder={placeholder}
         aria-label="Search experiences"
-        className="w-full rounded-xl border border-stone-200 bg-white px-4 py-3 text-sm text-stone-900 shadow-sm outline-none transition-colors placeholder:text-stone-400 focus:border-teal-500 focus:ring-2 focus:ring-teal-500/20"
+        className="w-full rounded-xl border border-stone-200 bg-white px-4 py-3 text-sm text-stone-900 shadow-sm outline-none transition-colors placeholder:text-stone-400 focus:border-teal-500 focus:ring-2 focus:ring-teal-500/20 focus-visible:outline-none"
       />
     </div>
   );

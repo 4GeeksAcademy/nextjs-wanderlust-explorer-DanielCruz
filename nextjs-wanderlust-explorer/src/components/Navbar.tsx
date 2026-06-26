@@ -25,15 +25,15 @@ export default function Navbar() {
 
   return (
     <header className="sticky top-0 z-50 border-b border-stone-200 bg-white/95 backdrop-blur-sm">
-      <nav className="mx-auto flex max-w-7xl items-center justify-between px-4 py-4 sm:px-6 lg:px-8">
+      <nav className="mx-auto flex max-w-7xl flex-wrap items-center justify-between gap-3 px-4 py-3 sm:px-6 sm:py-4 lg:px-8">
         <Link
           href="/"
-          className="text-lg font-semibold tracking-tight text-stone-900"
+          className="shrink-0 text-base font-semibold tracking-tight text-stone-900 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-500 focus-visible:ring-offset-2 sm:text-lg"
         >
           Wanderlust Labs
         </Link>
 
-        <ul className="flex items-center gap-1 sm:gap-2">
+        <ul className="flex max-w-full flex-wrap items-center justify-end gap-1 sm:gap-2">
           {navLinks.map(({ href, label }) => {
             const active = isActive(pathname, href);
             const displayLabel =
@@ -45,7 +45,7 @@ export default function Navbar() {
               <li key={href}>
                 <Link
                   href={href}
-                  className={`rounded-lg px-3 py-2 text-sm font-medium transition-colors sm:px-4 ${
+                  className={`rounded-lg px-2.5 py-1.5 text-xs font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-500 focus-visible:ring-offset-2 sm:px-4 sm:py-2 sm:text-sm ${
                     active
                       ? "bg-stone-900 text-white"
                       : "text-stone-600 hover:bg-stone-100 hover:text-stone-900"
