@@ -2,15 +2,9 @@
 
 import type { ExperienceCategory } from "@/types/experience";
 
-const categories: ExperienceCategory[] = [
-  "Adventure",
-  "Culture",
-  "Food",
-  "Wellness",
-  "Nature",
-];
-
 interface FilterBarProps {
+  categoryOptions: ExperienceCategory[];
+  destinationOptions: string[];
   selectedCategory?: ExperienceCategory | "";
   selectedDestination?: string;
   onCategoryChange?: (category: ExperienceCategory | "") => void;
@@ -18,15 +12,24 @@ interface FilterBarProps {
 }
 
 export default function FilterBar({
+  categoryOptions,
+  destinationOptions,
   selectedCategory = "",
   selectedDestination = "",
   onCategoryChange,
   onDestinationChange,
 }: FilterBarProps) {
+  const destinationValueInOptions = destinationOptions.includes(
+    selectedDestination,
+  );
+
   return (
-    <div className="flex flex-col gap-4 sm:flex-row sm:items-center">
+    <div className="flex flex-col gap-4 sm:flex-row sm:items-end">
       <div className="w-full sm:max-w-xs">
-        <label htmlFor="category-filter" className="mb-1 block text-sm font-medium text-stone-700">
+        <label
+          htmlFor="category-filter"
+          className="mb-1 block text-sm font-medium text-stone-700"
+        >
           Category
         </label>
         <select
@@ -38,7 +41,7 @@ export default function FilterBar({
           className="w-full rounded-xl border border-stone-200 bg-white px-4 py-3 text-sm text-stone-900 shadow-sm outline-none focus:border-teal-500 focus:ring-2 focus:ring-teal-500/20"
         >
           <option value="">All categories</option>
-          {categories.map((category) => (
+          {categoryOptions.map((category) => (
             <option key={category} value={category}>
               {category}
             </option>
@@ -47,17 +50,28 @@ export default function FilterBar({
       </div>
 
       <div className="w-full sm:max-w-xs">
-        <label htmlFor="destination-filter" className="mb-1 block text-sm font-medium text-stone-700">
+        <label
+          htmlFor="destination-filter"
+          className="mb-1 block text-sm font-medium text-stone-700"
+        >
           Destination
         </label>
-        <input
+        <select
           id="destination-filter"
-          type="text"
           value={selectedDestination}
           onChange={(event) => onDestinationChange?.(event.target.value)}
-          placeholder="Filter by city or country..."
-          className="w-full rounded-xl border border-stone-200 bg-white px-4 py-3 text-sm text-stone-900 shadow-sm outline-none placeholder:text-stone-400 focus:border-teal-500 focus:ring-2 focus:ring-teal-500/20"
-        />
+          className="w-full rounded-xl border border-stone-200 bg-white px-4 py-3 text-sm text-stone-900 shadow-sm outline-none focus:border-teal-500 focus:ring-2 focus:ring-teal-500/20"
+        >
+          <option value="">All destinations</option>
+          {!destinationValueInOptions && selectedDestination ? (
+            <option value={selectedDestination}>{selectedDestination}</option>
+          ) : null}
+          {destinationOptions.map((destination) => (
+            <option key={destination} value={destination}>
+              {destination}
+            </option>
+          ))}
+        </select>
       </div>
     </div>
   );
